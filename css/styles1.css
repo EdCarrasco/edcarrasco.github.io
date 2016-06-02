@@ -1,13 +1,85 @@
 body {
-    background-color: lightblue;
+    background-color: lightgreen;
+    font-family: 'Roboto Condensed', sans-serif;
+    padding: 5px;
+    margin: 0px;
 }
 
-h1 {
-    color: navy;
-    margin-left: 20px;
+#header {
+	display: inline-block;
+	background-color: lightblue;
+	width: 100%;
+	color: white;
+	margin-bottom: 5px;
 }
 
-#test {
+#website-name {
+	display: inline-block;
+	background-color: none;
+	color: black;
+}
 
-	color: red;
+#website-name h1 {
+	padding: 0px;
+	margin: 0px;
+	height: 86px;
+	line-height: 86px;
+}
+
+#nav-top {
+	display: inline-block;
+	background-color: black;
+	float: right;
+}
+
+#nav-top ul {
+
+	padding: 0px;
+	margin: 0px;
+}
+
+#nav-top ul li {
+	display: inline-block;
+	list-style-type: none;
+	background-color: orange;
+	color: black;
+
+	width: 86px;
+	height: 86px;
+
+	text-align: center;
+	line-height: 86px; /* to center vertically, value must be equal to height */
+	font-size: 24px;
+	margin-left: 3px;
+}
+
+#nav-top ul a:link li {
+	text-decoration: none;
+	color: black;
+}
+#nav-top ul a:visited li {
+	text-decoration: none;
+	color: black;
+}
+#nav-top ul a:hover li {
+	background-color: gold;
+	text-decoration: underline;
+}
+#nav-top ul a:active li {
+	text-decoration: underline;
+}
+
+#content {
+	background-color: pink;
+}
+
+#footer {
+	background-color: #333;
+	color: #BBB;
+	text-align: center;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	font-size: 14px;
 }
