@@ -1,0 +1,44 @@
+#nav-top ul li {
+	display: inline-block;
+}
+
+#nav-top ul li .dropdown-menu {
+	background-color: orange;
+}
+
+#nav-top ul li .dropdown-menu:hover {
+	background-color: red;
+}
+
+#nav-top ul li ul {
+	display: none;
+}
+
+#nav-top ul li:hover ul {
+	display: block;
+
+	padding: 0px;
+	margin: 0px;
+}
+
+#nav-top ul li ul li {
+	display: inline-block;
+	margin-left: 0px;
+	height: 43px;
+	line-height: 43px;
+	float: left;
+	clear: left;
+
+	text-align: left;
+	padding-left: 10px;
+}
+
+#nav-top ul li#blog ul li 	  {width: 190px;}
+#nav-top ul li#projects ul li {width: 150px;}
+#nav-top ul li#about ul li 	  {width: 100px;}
+#nav-top ul li#contact ul li  {width: 90px; left: -14px; position: relative;}
+
+#nav-top ul li ul li:hover {
+	background-color: red;
+}
+
