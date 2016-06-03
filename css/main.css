@@ -5,6 +5,8 @@ body {
     margin: 0px;
 }
 
+/* Header */
+
 #header {
 	display: inline-block;
 	background-color: lightblue;
@@ -24,6 +26,11 @@ body {
 	margin: 0px;
 	height: 86px;
 	line-height: 86px;
+}
+
+#website-name h1 a {
+	text-decoration: none;
+	color: black;
 }
 
 #nav-top {
@@ -51,27 +58,43 @@ body {
 	line-height: 86px; /* to center vertically, value must be equal to height */
 	font-size: 24px;
 	margin-left: 3px;
+
+	transition: background 0.3s ease-out;
+	-o-transition: background 0.3s ease-out;
+	-moz-transition: background 0.3s ease-out;
+	-webkit-transition: background 0.3s ease-out;
+
 }
 
-#nav-top ul a:link li {
+#nav-top ul li .dropdown-menu {
+	transition: background 0.3s ease-out;
+	-o-transition: background 0.3s ease-out;
+	-moz-transition: background 0.3s ease-out;
+	-webkit-transition: background 0.3s ease-out;
+}
+
+#nav-top ul li a:link {
 	text-decoration: none;
 	color: black;
 }
-#nav-top ul a:visited li {
+#nav-top ul li a:visited {
 	text-decoration: none;
 	color: black;
 }
-#nav-top ul a:hover li {
-	background-color: gold;
-	text-decoration: underline;
+#nav-top ul li a:hover {
+	text-decoration: none;
 }
-#nav-top ul a:active li {
-	text-decoration: underline;
+#nav-top ul li a:active {
+	text-decoration: none;
 }
+
+/* Content - The stuff inbetween the header and footer */
 
 #content {
 	background-color: pink;
 }
+
+/* Footer */
 
 #footer {
 	background-color: #333;
