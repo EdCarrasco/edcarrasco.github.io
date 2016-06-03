@@ -31,7 +31,10 @@
 
 	text-align: left;
 	padding-left: 10px;
+<<<<<<< HEAD
 	z-index: 100;
+=======
+>>>>>>> db7fb085611fb2af9cf242b25d79f195acdaab1e
 }
 
 #nav-top ul li#blog ul li 	  {width: 190px;}

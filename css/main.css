@@ -1,15 +1,8 @@
 body {
-    background-color: white;
+    background-color: lightgreen;
     font-family: 'Roboto Condensed', sans-serif;
     padding: 5px;
     margin: 0px;
-    text-align: center;
-}
-
-#wrapper {
-	display: inline-block;
-	width: 640px;
-	text-align: center;
 }
 
 /* Header */
@@ -99,46 +92,17 @@ body {
 
 #content {
 	background-color: pink;
-	z-index: 0;
 }
 
 /* Footer */
 
 #footer {
-	background-color: #EEE;
-	color: #777;
+	background-color: #333;
+	color: #BBB;
 	text-align: center;
 	position: absolute;
 	bottom: 0;
 	left: 0;
 	width: 100%;
 	font-size: 14px;
-	padding: 4px 0px;
-
-}
-
-#footer #contact-info {
-	display: inline;
-	
-}
-
-#footer #contact-info ul {
-	display: inline;
-	padding: 0px;
-	margin: 0px;
-}
-
-#footer #contact-info ul li{
-	
-	display: inline;
-	margin-left: 1em;
-
-}
-
-#footer #contact-info ul li a {
-	color: #777;
-}
-
-#footer #contact-info ul li a:hover {
-	color: black;
 }
