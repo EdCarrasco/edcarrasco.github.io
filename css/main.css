@@ -1,0 +1,144 @@
+body {
+    background-color: white;
+    font-family: 'Roboto Condensed', sans-serif;
+    padding: 5px;
+    margin: 0px;
+    text-align: center;
+}
+
+#wrapper {
+	display: inline-block;
+	width: 640px;
+	text-align: center;
+}
+
+/* Header */
+
+#header {
+	display: inline-block;
+	background-color: lightblue;
+	width: 100%;
+	color: white;
+	margin-bottom: 5px;
+}
+
+#website-name {
+	display: inline-block;
+	background-color: none;
+	color: black;
+}
+
+#website-name h1 {
+	padding: 0px;
+	margin: 0px;
+	height: 86px;
+	line-height: 86px;
+}
+
+#website-name h1 a {
+	text-decoration: none;
+	color: black;
+}
+
+#nav-top {
+	display: inline-block;
+	background-color: black;
+	float: right;
+}
+
+#nav-top ul {
+
+	padding: 0px;
+	margin: 0px;
+}
+
+#nav-top ul li {
+	display: inline-block;
+	list-style-type: none;
+	background-color: orange;
+	color: black;
+
+	width: 86px;
+	height: 86px;
+
+	text-align: center;
+	line-height: 86px; /* to center vertically, value must be equal to height */
+	font-size: 24px;
+	margin-left: 3px;
+
+	transition: background 0.3s ease-out;
+	-o-transition: background 0.3s ease-out;
+	-moz-transition: background 0.3s ease-out;
+	-webkit-transition: background 0.3s ease-out;
+
+}
+
+#nav-top ul li .dropdown-menu {
+	transition: background 0.3s ease-out;
+	-o-transition: background 0.3s ease-out;
+	-moz-transition: background 0.3s ease-out;
+	-webkit-transition: background 0.3s ease-out;
+}
+
+#nav-top ul li a:link {
+	text-decoration: none;
+	color: black;
+}
+#nav-top ul li a:visited {
+	text-decoration: none;
+	color: black;
+}
+#nav-top ul li a:hover {
+	text-decoration: none;
+}
+#nav-top ul li a:active {
+	text-decoration: none;
+}
+
+/* Content - The stuff inbetween the header and footer */
+
+#content {
+	background-color: pink;
+	z-index: 0;
+}
+
+/* Footer */
+
+#footer {
+	background-color: #EEE;
+	color: #777;
+	text-align: center;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	font-size: 14px;
+	padding: 4px 0px;
+
+}
+
+#footer #contact-info {
+	display: inline;
+	
+}
+
+#footer #contact-info ul {
+	display: inline;
+	padding: 0px;
+	margin: 0px;
+}
+
+#footer #contact-info ul li{
+	
+	display: inline;
+	margin-left: 1em;
+
+}
+
+#footer #contact-info ul li a {
+	color: #777;
+}
+
+#footer #contact-info ul li a:hover {
+	color: black;
+}
