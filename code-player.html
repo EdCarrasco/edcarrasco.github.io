@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Code Player</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="jquery-ui/jquery-ui.css">
+	<link rel="stylesheet" type="text/css" href="css/code-player.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+	<script src="jquery-ui/jquery-ui.js"></script>
+</head>
+<body>
+	<div id="topbar">
+		<div id="logo">Code Player Clone</div>
+		<div id="button-container">
+			<button id="html" class="active">HTML</button><!--
+		 --><button id="css">CSS</button><!--
+		 --><button id="javascript">JavaScript</button><!--
+		 --><button id="output" class="active">Output</button>
+		</div>
+	</div>
+
+	<div id="main">
+		<textarea id="html-panel" class="panel active-panel" placeholder="Write HTML code here"></textarea><!--
+	 --><textarea id="css-panel" class="panel" placeholder="Write CSS code here"></textarea><!--
+	 --><textarea id="javascript-panel" class="panel" placeholder="Write JavaScript code here"></textarea><!--
+	 --><iframe id="output-panel" class="panel active-panel" src="code-player-output.html"></iframe>
+	</div>
+
+	<script type="text/javascript">
+		
+		function ResizePanels() {
+			$(".panel").height( $(window).height() - $("#topbar").height() );
+			$(".panel").width( $(window).width() / $(".active-panel").length );
+		}
+
+		function UpdateOutput() {
+			var content = "<html><head><style type='text/css'>" 
+						+ $("#css-panel").val() 
+						+ "</style></head><body>" 
+						+ $("#html-panel").val() 
+						+ "</body></html>";
+			$("#output-panel").contents().find("html").html( content );
+
+			// run JavaScript
+			document.getElementById("output-panel").contentWindow.eval( $("#javascript-panel").val() );
+		}
+
+		// Run when page is first loaded
+		UpdateOutput();
+
+		$("textarea").on('change keyup paste cut', 
+			function(){
+				UpdateOutput();
+			}
+		);
+		
+		// Hover over buttons
+		$("button").hover(
+			function() {
+				$(this).addClass("highlight");
+			}, function() {
+				$(this).removeClass("highlight");
+			}
+		);
+
+		// Click on buttons
+		$("button").click(
+			function(){
+				$(this).toggleClass("active");
+
+				var panelId = "#" + $(this).attr("id") + "-panel";
+				$(panelId).toggleClass("active-panel");
+				ResizePanels();
+			}
+		);
+
+		// Set all panels' width and height
+		$(window).resize(
+			function() {
+				ResizePanels();
+			}
+		);
+
+		window.setInterval(
+			function() {
+				UpdateOutput();
+				ResizePanels();
+			}, 
+			100
+		);
+
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,120 @@
+body {
+	background-color: #EEE;
+	margin: 0;
+	padding: 0;
+
+	font-family: helvetica, sans-serif;
+	font-size: 22px;
+}
+
+#topbar {
+	background-color: #444;
+	overflow: auto;
+	padding: 0px; /* mas as form margin and .menu-link */
+}
+
+#logo {
+	float: left;
+	margin: 4px 0;
+	padding-top: 3px;
+	padding-left: 3px;
+	color: white;
+}
+
+#button-container {
+	float: left;
+	margin-left: 10px;
+}
+
+#button-container button {
+	background-color: #EEE;
+	border: 1px solid #BBB;
+	height: 30px;
+	margin: 4px 0;
+	padding: 0;
+}
+
+#button-container button.highlight {
+	background-color: #CCC;
+}
+
+#button-container button.active {
+	background-color: #BEF;
+}
+
+#button-container button.active.highlight {
+	background-color: #9CD;
+}
+
+button#html {
+	
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+}
+button#output {
+	margin-right: 10px;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+button#css, button#javascript, button#output {
+	border-left: 0px;
+}
+
+#topbar ul {
+	margin: 4px 0;
+	padding: 0;
+	float: right;
+}
+
+#topbar ul li {
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+
+}
+
+.menu-link {
+	display: inline-block;
+	background-color: orange;
+
+	border-radius: 3px;
+	margin-right: 4px; /* same as #topbar padding */
+	padding: 5px 5px;
+
+	color: black;
+	font-size: 12px;
+	text-align: center;
+	text-decoration: none;
+}
+
+.panel {
+	display: none;
+	margin: 0;
+	padding: 0px;
+	border: none;
+	resize: none;
+	outline: 1px solid #DDD;
+	float: left;
+	background-color: #FFF;
+
+}
+
+.active-panel {
+	display: inline-block;
+}
+
+#html-panel {
+	background-color: #FFE;
+}
+
+#css-panel {
+	background-color: #EFE;
+}
+
+#javascript-panel {
+	background-color: #EEF;
+}
+
+iframe {
+	overflow: none;
+}
