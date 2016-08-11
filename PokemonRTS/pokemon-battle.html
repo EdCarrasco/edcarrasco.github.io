@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Required meta tags always come first -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, shrink-to-fit=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>Pokemon Battle Scene</title>
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>-->
+
+	<style type="text/css">
+
+		body {
+			overflow: hidden;
+			text-align: center;
+		}
+
+		#content {
+			display: inline-block;
+			position: relative;
+			max-width: 
+		}
+
+		#battle-area {
+			width: 100%;
+			height: 50%;
+			position: relative;
+		}
+
+		#battle-message {
+			width: 100%;
+			height: 10%;
+			position: relative;
+		}
+
+		#battle-menu {
+			width: 100%;
+			height: 40%;
+
+			position: absolute;
+			left: 0;
+			bottom: 0;
+		}
+
+		.battle-area-bar {
+			background-color: lightgrey;
+
+			border: 1px solid black;
+			box-sizing: border-box;
+
+			width: 50%;
+			height: 25%;
+		}
+
+		#opponent-bar {
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+
+		#player-bar {
+			position: absolute;
+			bottom: 0;
+			right: 0;
+		}
+
+		.battle-area-opponent {
+			background-color: lightgreen;
+			border: 1px solid black;
+			box-sizing: border-box;
+
+			width: 50%;
+			height: 75%;
+		}
+
+		#opponent-sprite-area {
+			position: absolute;
+			top: 0;
+			right: 0;
+		}
+
+		#player-sprite-area {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+		}
+
+		/* REACTIONS AREA */
+
+		#reactions-area {
+			background-color: gray;
+			position: absolute;
+			top: 0;
+			left: 0;
+
+			width: 35%;
+			height: 80%;
+		}
+
+		.reaction-container {
+			width: 100%;
+			height: 50%;
+		}
+
+		.reaction-button {
+			width: 100%;
+			height: 100%;
+			padding: 5px;
+		}
+
+		.reaction-name {
+			display: inline-block;
+			font-weight: bold;
+			font-size: 133%;
+			height: 40%;
+		}
+
+		.reaction-description {
+			display: inline-block;
+			height: 60%;
+		}
+
+		/* MOVES AREA */
+
+		#moves-area {
+			background-color: lightblue;
+			position: absolute;
+			top: 0;
+			right: 0;
+
+			width: 65%;
+			height: 80%;
+		}
+
+		.move-container {
+			float: left;
+			width: 50%;
+			height: 50%;
+		}
+
+		.move-button {
+			width: 100%;
+			height: 100%;
+			padding: 5px;
+		}
+
+		/* The height of .move-name and .move-description must add up to 100%. */
+		.move-name {
+			display: inline-block;
+			font-weight: bold;
+			font-size: 133%;
+			height: 40%;
+		}
+
+		.move-description {
+			display: inline-block;
+			height: 60%;
+		}
+
+		/* OPTIONS AREA */
+
+		#menu-options {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+
+			width: 100%;
+			height: 20%;
+		}
+
+		#menu-options button {
+			width: 25%;
+			height: 100%;
+		}
+
+		/* OTHERS */
+
+		.text-highlight {
+			color: darkgreen;
+			font-weight: bold;
+		}
+
+
+
+		.status-bar {
+			display: inline-block;
+			border: 2px solid black;
+			background-color: black;
+			width: 225px;
+			height: 20px;
+			line-height: 16px;
+			margin: 5px;
+			border-radius: 4px;
+		}
+
+		.bar-name {
+			display: inline;
+			float: left;
+			width: 15%;
+			height: 100%;
+			background-color: black;
+			color: white;
+			margin: 0;
+			padding: 0;
+			font-weight: bold;
+			content: "test";
+		}
+
+		.bar-fill-container {
+			display: inline-block;
+			width: 85%;
+			height: 100%;
+		}
+
+		.bar-fill {
+			width: 100%;
+			height: 100%;
+			border-radius: 2px;
+		}
+
+		.bar-fill-health { background-color: rgb(0, 200, 50); }
+		.bar-fill-energy { background-color: rgb(250, 200, 50); }
+
+	</style>
+</head>
+
+<body>
+<div id="content">
+	<div id="battle-area">
+		<!-- OPPONENTS'S POKEMON STATUS BAR AREA -->
+		<div class="battle-area-bar" id="opponent-bar">
+			OPPONENT BAR
+		</div>
+		
+
+		<!-- PLAYER'S POKEMON STATUS BAR AREA -->
+		<div class="battle-area-bar" id="player-bar">
+			<div class="status-bar">
+				<div class="bar-name">
+					HP
+				</div>
+				<div class="bar-fill-container">
+					<div class="bar-fill bar-fill-health" id="health-player"></div>
+				</div>
+			</div>
+
+			<div class="status-bar">
+				<div class="bar-name">
+					PP
+				</div>
+				<div class="bar-fill-container">
+					<div class="bar-fill bar-fill-energy" id="energy-player"></div>
+				</div>
+			</div>
+		</div>
+
+		<!-- OPPONENT'S POKEMON CHARACTER AREA -->
+		<div class="battle-area-opponent" id="opponent-sprite-area">
+			OPPONENT
+		</div>
+
+		<!-- PLAYER'S POKEMON CHARACTER AREA -->
+		<div class="battle-area-opponent" id="player-sprite-area">
+			PLAYER
+		</div>
+
+	</div>
+	<div id="battle-message">
+		MESSAGE<br>
+		MESSAGE<br>
+		MESSAGE
+	</div>
+	<div id="battle-menu">
+
+		<div id="reactions-area">
+			<div class="reaction-container" id="block">
+				<button class="reaction-button">
+					<span class="reaction-name">BLOCK</span>
+					<br>
+					<span class="reaction-description">Reduces the effectiveness of moves against you by <span class="text-highlight">50%</span>.</span>
+				</button>
+			</div>
+			<div class="reaction-container" id="dodge">
+				<button class="reaction-button">
+					<span class="reaction-name">DODGE</span>
+					<br>
+					<span class="reaction-description">The next move against you does not hit you.</span>
+				</button>
+			</div>
+		</div>
+
+		<div id="moves-area">
+			<div class="move-container" id="move-1">
+				<button class="move-button" data-moveid="1">
+					<span class="move-name">TACKLE</span>
+					<br>
+					<span class="move-description">Basic offensive move.</span>
+				</button>
+			</div>
+			<div class="move-container" id="move-2">
+				<button class="move-button" data-moveid="2">
+					<span class="move-name">TRI-BEAM</span>
+					<br>
+					<span class="move-description">Strong offensive move.</span>
+				</button>
+			</div>
+			<div class="move-container" id="move-3">
+				<button class="move-button" data-moveid="3">
+					<span class="move-name">SWORD DANCE</span>
+					<br>
+					<span class="move-description">Situational move 1.</span>
+				</button>
+			</div>
+			<div class="move-container" id="move-4">
+				<button class="move-button" data-moveid="4">
+					<span class="move-name">FLY</span>
+					<br>
+					<span class="move-description">Situational move 2.</span>
+				</button>
+			</div>
+		</div>
+
+		<div id="menu-options">
+			<button id="pause" class="btn-option">PAUSE</button><!--
+		 --><button id="pokemon" class="btn-option">POKE</button><!--
+		 --><button id="bag" class="btn-option">BAG</button><!--
+		 --><button id="run" class="btn-option">RUN</button>
+		</div>
+	</div>
+</div>
+
+
+<table id="grid"></table>
+
+<!-- jQuery first, then Bootstrap JS. -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
+<script type="text/javascript">
+
+/* Resizing the content of the screen to fit the new viewport */
+
+/*
+var moveList = [
+	[ "name": "Move1", "description": "Move1_Description", "energyCost": 30, "delay": 0.5, "cooldown": 1.0, "target": "opponent", "damage": 35 ], 
+	[ "Tackle", "Basic attack", "30", "0.5", "1", "30 damage", "N/A" ], 
+	[ "Move3", "Description", "EnergyCost", "Delay", "Cooldown", "PrimaryEffect", "SecondaryEffect" ], 
+	[ "Move4", "Description", "EnergyCost", "Delay", "Cooldown", "PrimaryEffect", "SecondaryEffect" ], 
+	[ "Move5", "Description", "EnergyCost", "Delay", "Cooldown", "PrimaryEffect", "SecondaryEffect" ], 
+	[ "Move6", "Description", "EnergyCost", "Delay", "Cooldown", "PrimaryEffect", "SecondaryEffect" ]
+];*/
+
+/*
+	TARGET
+		self
+		random-one
+		random-two
+		random-three
+		friendly-random
+		friendly-all
+
+*/
+
+var Type = {
+	NOTYPE: "NOTYPE", 
+	NORMAL: "NORMAL",
+	FIGHTING: "FIGHTING", 
+	FLYING: "FLYING", 
+	POISON: "POISON", 
+	GROUND: "GROUND", 
+	ROCK: "ROCK", 
+	BUG: "BUG", 
+	GHOST: "GHOST", 
+	STEEL: "STEEL", 
+
+	FIRE: "FIRE", 
+	WATER: "WATER", 
+	GRASS: "GRASS", 
+	ELECTRIC: "ELECTRIC", 
+	PSYCHIC: "PSYCHIC", 
+	ICE: "ICE", 
+	DRAGON: "DRAGON", 
+	DARK: "DARK", 
+	FAIRY: "FAIRY"
+}
+
+var Category = {
+	PHYSICAL: "PHYSICAL", 
+	SPECIAL: "SPECIAL", 
+	STATUS: "STATUS"
+}
+
+var moveList = [ 
+	{name: "Move_0"},
+	{name: "Tackle", description: "Basic offensive move.", type: Type.NORMAL, category: Category.PHYSICAL, energyCost: 30.0, cooldown: 1.0, delay: 0.5, damage: 25.0}
+	
+];
+
+var your_health_max = 120;
+var your_health = your_health_max;
+var your_energy_max = 100;
+var your_energy = your_energy_max;
+
+var opponent_health_max = 120;
+var opponent_health = opponent_health_max;
+var opponent_energy_max = 100;
+var opponent_energy = opponent_energy_max;
+
+/* ResizeToViewport() is called when the page is loaded and every time the page is resized.  */
+$(window).on('load',
+	function() {
+		ResizeToViewport();
+	}
+);
+$(window).resize(
+	function(event){
+		ResizeToViewport();
+	}
+);
+function ResizeToViewport() {
+	var viewportWidth = $(window).width();
+	var viewportHeight = $(window).height();
+
+	// Resize width
+	var MAX_WIDTH = 480;
+	if (viewportWidth >= MAX_WIDTH) 
+		$("#content").width(MAX_WIDTH);
+	else 							
+		$("#content").width(viewportWidth);
+	
+	// Resize height
+	$("#content").height(viewportHeight);
+}
+
+/* UpdateBattle() is called every few milliseconds, during normal circumstances. */
+var UpdateBattle = function() {
+
+	// Increase health up to its maximum
+	your_health += 0.1;
+	if (your_health > your_health_max)
+		your_health = your_health_max;
+
+	// Increase energy up to its maximum
+	your_energy += 0.2;
+	if (your_energy > your_energy_max)
+		your_energy = your_energy_max;
+
+	// Update UI
+	UpdatePlayerBars();
+}
+setInterval(UpdateBattle, 10); // milliseconds
+
+/*  */
+
+$(".move-button").click(
+	function (event) {
+		var moveID = $(this).data("moveid");
+
+		if (moveID >= moveList.length) {
+			alert("moveList["+ moveID +"] does not exist.");
+			return;
+		}
+
+		var type = moveList[moveID]['type'];
+		//alert(typeof type);
+
+		//alert( moveList[moveID]['name'] + '\n' + moveList[moveID]['description'] + '\n' + moveList[moveID]['delay'] + '\n' + moveList[moveID]['type'] );
+
+		switch (moveID) {
+			case 0:
+				DealDamage("self");
+				break;
+			case 1:
+				Tackle("self", "opponent");
+				break;
+			case 2:
+				
+				break;
+			case 3:
+
+				
+				break;
+		}
+
+	}
+);
+
+
+
+function Tackle(source, target) {
+	// Get the move's data
+	for (var i = 0; i < moveList.length; i++) {
+		if (moveList[i].name === "Tackle") {
+			var energyCost = moveList[i].energyCost;
+			var damage = moveList[i].damage;
+		}
+	}
+
+	// Perform the effects of the move
+	var hasEnergy = ReduceEnergy("self", energyCost);
+	if (hasEnergy) {
+		DealDamage("self", damage);
+		console.log("Your Pokemon used Tackle! HP: " + Math.round(your_health) + "  ENERGY: " + Math.round(your_energy))
+	} 
+	else {
+		console.log("Your Pokemon does not have enough energy to use Tackle...")
+	}
+
+	
+}
+
+function ReduceEnergy(target, energyAmount) {
+	if (target === "self") {
+		if (your_energy >= energyAmount) {
+			your_energy -= energyAmount;
+			return true;
+		} else {
+			return false;
+		}
+		
+	}
+	else {
+		alert("ReduceEnergy()");
+	}
+	return false;
+}
+
+function DealDamage(target, healthAmount) {
+	if (target === "self") {
+		your_health -= healthAmount;
+	} 
+	else {
+		alert("DealDamage()");
+	}
+
+	UpdatePlayerBars();
+}
+
+function UpdatePlayerBars(){
+	var health_percentage = your_health/your_health_max*100;
+	$("#health-player").css("width", health_percentage+'%');
+
+	var energy_percentage = your_energy/your_energy_max*100;
+	$("#energy-player").css("width", energy_percentage+'%');
+}
+
+</script>
+</body>
+</html>
